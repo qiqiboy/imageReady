@@ -14,15 +14,28 @@ imageReady
  * @param onerror Function 图片加载失败
  *
  * onready、onload、onerror的参数只有一个，都是Image对象
- * imageReady('http://www.planeart.cn/demo/imgReady/vistas24.jpg',function(img){
+ */
+
+imageReady=function(img, onready, onload, onerror){}
+
+//调用
+imageReady('http://www.planeart.cn/demo/imgReady/vistas24.jpg',
+	function(img){
 		console.log('图片已经ready了，可以获取宽高了')
 	},function(img){
 		console.log('图片已经下载完成了')
 	},function(img){
 		console.log('图片下载出错了')
-	})
- */
+	}
+);
 
-imageReady=function(img, onready, onload, onerror){}
+/* 如果图片可以获取，则输出：
+ * 图片已经ready了，可以获取宽高了
+ * 图片已经下载完成了
+ */
+ 
+/* 如果图片地址不可用或者网络不可用，则输出：
+ * 图片下载出错了
+ */
 
 ````
