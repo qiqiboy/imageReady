@@ -6,15 +6,15 @@ var imageReady=(function(){
 	var list=[],
 		timer=null,
 		prop=[['width','height'],['naturalWidth','naturalHeight']],
-		natural=Number(typeof document.createElement('img').naturalHeight==='number'),//ÊÇ·ñÖ§³ÖHTML5ĞÂÔöµÄ naturalHeight
+		natural=Number(typeof document.createElement('img').naturalHeight==='number'),//æ˜¯å¦æ”¯æŒHTML5æ–°å¢çš„ naturalHeight
 		tick=function(){
 			for(var i=0;i<list.length;i++){
 				list[i].end?list.splice(i--,1):check.call(list[i],null);
 			}
 			list.length && (timer=setTimeout(tick,50)) || (timer=null);
 		},
-		/** overflow: ¼ì²âÍ¼Æ¬³ß´çµÄ¸Ä±ä
-		  *  img.__width,img.__height: ³õÔØÈëÊ±µÄ³ß´ç
+		/** overflow: æ£€æµ‹å›¾ç‰‡å°ºå¯¸çš„æ”¹å˜
+		  *  img.__width,img.__height: åˆè½½å…¥æ—¶çš„å°ºå¯¸
 		  */
 		check=function(){
 			if(this[prop[natural][0]]!==this.__width || this[prop[natural][1]]!==this.__height || this[prop[natural][0]]*this[prop[natural][1]]>1024){
@@ -27,7 +27,7 @@ var imageReady=(function(){
 			onload=onload || new Function();
 			onerror=onerror || new Function();
 			var img=typeof _img=='string'?new Image():_img;
-			img.onerror=function(){// ie && ie<=8 µÄä¯ÀÀÆ÷±ØĞëÔÚsrc¸³ÓèÇ°¶¨Òåonerror
+			img.onerror=function(){// ie && ie<=8 çš„æµè§ˆå™¨å¿…é¡»åœ¨srcèµ‹äºˆå‰å®šä¹‰onerror
 				onerror(img);
 				img.end=true;
 				img=img.onload=img.onerror=img.onreadystatechange=null;
