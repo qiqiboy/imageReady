@@ -20,8 +20,8 @@ var imageReady=(function(){
 		  */
 		check=function(){
 			if(this.complete || this[prop[natural][0]]!==this.__width || this[prop[natural][1]]!==this.__height || this[prop[natural][0]]*this[prop[natural][1]]>1024){
-				this.onready(this,this);
 				this.end=true;
+				this.onready(this,this);
 			}
 		};
 		
@@ -31,16 +31,18 @@ var imageReady=(function(){
 		onerror=onerror || new Function();
 		var img=typeof _img=='string'?new Image():_img;
 		img.onerror=function(){// ie && ie<=8 的浏览器必须在src赋予前定义onerror
-			onerror.call(img,img);
 			img.end=true;
-			img=img.onload=img.onerror=img.onreadystatechange=null;
+			img.onload=img.onerror=img.onreadystatechange=null;
+			onerror.call(img,img);
+			img=null;
 		}
 		if(typeof _img=='string') img.src=_img;
 		if(!img)return; //为了防止onerror触发后img=null
 		if(img.complete){
+			img.onerror=null;
 			onready.call(img,img);
 			onload.call(img,img);
-			img=img.onerror=null;
+			img=null;
 			return;
 		}
 		img.__width=img[prop[natural][0]];
@@ -49,9 +51,10 @@ var imageReady=(function(){
 		check.call(img);
 		img.onload=img.onreadystatechange=function(){
 			if(img&&img.readyState&&img.readyState!='loaded'&&img.readyState!='complete'){return;}
+			img.onload=img.onerror=img.onreadystatechange=null;
 			!img.end && check.call(img);
 			onload.call(img,img);
-			img=img.onload=img.onerror=img.onreadystatechange=null;
+			img=null;
 		}
 		if(!img.end){
 			list.push(img);
