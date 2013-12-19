@@ -41,4 +41,4 @@ imageReady('http://www.planeart.cn/demo/imgReady/vistas24.jpg',
 ````
 
 ## demo地址
-请点击http://www.qiqiboy.com/2011/05/20/javascript-image-preload.html
+请点击http://u.boy.im/imageReady/

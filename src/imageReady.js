@@ -1,6 +1,6 @@
 /**
- * imageReady v1.0.1
- * By qiqiboy, http://www.qiqiboy.com, http://weibo.com/qiqiboy, 2013/03/29
+ * imageReady v1.1
+ * By qiqiboy, http://www.qiqiboy.com, http://weibo.com/qiqiboy, 2013/12/19
  */
 var imageReady=(function(){
 	var list=[],
@@ -19,8 +19,8 @@ var imageReady=(function(){
 		  *  img.__width,img.__height: 初载入时的尺寸
 		  */
 		check=function(){
-			if(this[prop[natural][0]]!==this.__width || this[prop[natural][1]]!==this.__height || this[prop[natural][0]]*this[prop[natural][1]]>1024){
-				this.onready(this);
+			if(this.complete || this[prop[natural][0]]!==this.__width || this[prop[natural][1]]!==this.__height || this[prop[natural][0]]*this[prop[natural][1]]>1024){
+				this.onready(this,this);
 				this.end=true;
 			}
 		};
@@ -40,6 +40,7 @@ var imageReady=(function(){
 		if(img.complete){
 			onready.call(img,img);
 			onload.call(img,img);
+			img=img.onerror=null;
 			return;
 		}
 		img.__width=img[prop[natural][0]];

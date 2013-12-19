@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" />
+<title>imageReady</title>
+<script src="src/imageReady.js"></script>
+</head>
+
+<body>
+<h1>imageReady test</h1>
+<pre id="output">
+</pre>
+<p><script>document.write('<img id="img1" src="http://www.planeart.cn/demo/imgReady/vistas24.jpg?s='+Math.random()+'" />');</script></p>
+<p><img src="images/1.jpg" /></p>
+<p><img src="images/2.jpg" /></p>
+<script>
+	var imgs=document.images,
+		op=document.getElementById('output'),
+		i=0;
+	while(i<imgs.length){
+		imageReady(imgs[i++],function(){
+			op.innerHTML=op.innerHTML+((this.readyTime=+new Date)+'-<font color="green">ready</font>-'+this.src+'-'+this.width+'*'+this.height+'<br/>')
+		},function(){
+			op.innerHTML=op.innerHTML+(+new Date+'-<font color="blue">load</font>-'+this.src+'----------获取宽高时间节省'+(+new Date-this.readyTime)/1000+'秒<br/>');
+		},function(){
+			op.innerHTML=op.innerHTML+(+new Date+'-<font color="error">error</font>-'+this.src+'<br/>')
+		});
+	}
+	imageReady('http://www.planeart.cn/demo/imgReady/vistas24.jpg?s='+Math.random(),function(){
+			op.innerHTML=op.innerHTML+((this.readyTime=+new Date)+'-<font color="green">ready</font>-'+this.src+'-'+this.width+'*'+this.height+'<br/>')
+		},function(){
+			op.innerHTML=op.innerHTML+(+new Date+'-<font color="blue">load</font>-'+this.src+'----------获取宽高时间节省'+(+new Date-this.readyTime)/1000+'秒<br/>');
+		},function(){
+			op.innerHTML=op.innerHTML+(+new Date+'-<font color="red">error</font>-'+this.src+'<br/>')
+		});
+	imageReady('http://www.planeart.cn/demo/imgReady/vistas25.jpg',function(){
+			op.innerHTML=op.innerHTML+((this.readyTime=+new Date)+'-<font color="green">ready</font>-'+this.src+'-'+this.width+'*'+this.height+'<br/>')
+		},function(){
+			op.innerHTML=op.innerHTML+(+new Date+'-<font color="blue">load</font>-'+this.src+'----------获取宽高时间节省'+(+new Date-this.readyTime)/1000+'秒<br/>');
+		},function(){
+			op.innerHTML=op.innerHTML+(+new Date+'-<font color="red">error</font>-'+this.src+'<br/>')
+		});
+</script>
+</body>
+</html>
