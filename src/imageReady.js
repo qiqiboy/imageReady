@@ -21,7 +21,7 @@ var imageReady=(function(){
 		check=function(){
 			if(this.complete || this[prop[natural][0]]!==this.__width || this[prop[natural][1]]!==this.__height || this.readyState=='loading'){
 				this.end=true;
-				this.onready(this,this);
+				this.onready(this);
 			}
 		};
 		
