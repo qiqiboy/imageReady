@@ -10,8 +10,7 @@ var imageReady=(function(){
 		tick=function(){
 			var i=0;
 			while(i<list.length){
-				list[i].end?list.splice(i--,1):check.call(list[i]);
-				i++;
+				list[i].end?list.splice(i,1):check.call(list[i++]);
 			}
 			list.length && (timer=setTimeout(tick,50)) || (timer=null);
 		},
