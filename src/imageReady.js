@@ -6,7 +6,7 @@ var imageReady=(function(){
 	var list=[],
 		timer=null,
 		prop=[['width','height'],['naturalWidth','naturalHeight']],
-		natural=Number(typeof (new Image()).naturalWidth=='number'),//是否支持HTML5新增的 naturalHeight
+		natural=Number('naturalWidth' in new Image),//是否支持HTML5新增的 naturalHeight
 		tick=function(){
 			var i=0;
 			while(i<list.length){
@@ -20,7 +20,7 @@ var imageReady=(function(){
 		check=function(){
 			if(this.complete || this[prop[natural][0]]!==this.__width || this[prop[natural][1]]!==this.__height || this.readyState=='loading'){
 				this.end=true;
-				this.onready(this);
+				this.onready(this); 
 			}
 		};
 		
